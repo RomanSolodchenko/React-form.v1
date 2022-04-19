@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Validation from './validation';
 
 
-const Signupform = () => {
+const Signupform = ({submitForm}) => {
 
    const handleFormSubmit = (event) =>{
        event.preventDefault(); // данная функция предотвращает перезагрузку страницы принажатии на кнопку сиг-ап, для отправки формы
         setErrors(Validation(values));// проверка введенных данных 
-
+            setDataIsCorrect(true); // при нажатие на кнопку сиг-ап состояние переходит в тру
    } 
 
     const [values, setValues] = useState({ // отслеживание введеных значений и установка начальных
@@ -28,6 +28,14 @@ const [errors, setErrors] = useState({
 
 })
 
+const [dataIsCorrect, setDataIsCorrect] = useState(false); //состояние изначальное 
+
+useEffect(() => {
+if(Object.keys(errors).length === 0 && dataIsCorrect){
+    submitForm(true);
+}
+},[errors])
+
 
   return (
     <div className="container">
@@ -47,7 +55,6 @@ const [errors, setErrors] = useState({
                     />
 
                     {errors.fullname && <p className="error">{errors.fullname}</p>}
-                    
                 </div>
 
                 <div className="email">
@@ -75,7 +82,6 @@ const [errors, setErrors] = useState({
     <button className="submit" onClick={handleFormSubmit}>sign up</button>
 </div>
 </form>
-
       </div>
     </div>
   );

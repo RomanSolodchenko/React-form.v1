@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import React from 'react';
+import Form from './components/Form';
+
+
+const App = () => {
   return (
-    <div className="App">
-     
+    <div>
+      <Form/>
     </div>
   );
 }

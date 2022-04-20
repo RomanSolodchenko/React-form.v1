@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import Signupform from './SignupForm';
-import Registeredform from './RegisteredForm';
-
-
+import SignupFormSuccess from './SignupFormSuccess';
 
 const Form = () => {
-    const [formIsSubmit, setFormIsSubmit] = useState(false);
 
-    const submitForm = () =>{
-        setFormIsSubmit(true);
-    }
+    const [formIsSubmited, setFormIsSubmited] = useState(false);
+
+    const submitForm = () => {
+        setFormIsSubmited(true);
+    };
+       
 
     return (
         <div>
-            {!formIsSubmit ? <Signupform submitForm={submitForm}/> : <Registeredform/>}
+            {!formIsSubmited ? (<Signupform submitForm={submitForm} />) : (<SignupFormSuccess />)}
         </div>
     );
-}
+};
 
 export default Form;

@@ -1,7 +1,7 @@
 import React from 'react';
 import "../App.css";
 
-const Registeredform = () => {
+const SignupFormSuccess = () => {
     return (
         <div className='container'>
             <div className="app-wrapper">
@@ -11,4 +11,4 @@ const Registeredform = () => {
     );
 }
 
-export default Registeredform;
+export default SignupFormSuccess;

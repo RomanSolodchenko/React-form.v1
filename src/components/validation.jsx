@@ -1,7 +1,6 @@
 //функция принимает валюес значения введенное пользователем
 // и проверит есть ли какая либо ошибка
-
-const Validation = (values) => {
+const validation = (values) => {
 
     let errors = {};
 
@@ -11,10 +10,9 @@ const Validation = (values) => {
 
     if(!values.email){
         errors.email = "email is required"
-    } else if(!/\S+@\S+\.S+/.test(values.email)){
+    } else if(!/\S+@\S+\.\S+/.test(values.email)){
         errors.email = "email is invalid"
     }// пустое поле ошибка, если почта не совпадает ошибка
-
 
     if(!values.password){
         errors.password = "password is required"
@@ -22,8 +20,7 @@ const Validation = (values) => {
         errors.password = "password min length 4"
     } // проверка на колво символов
 
-
     return errors;
 }
 
-export default Validation;
+export default validation;

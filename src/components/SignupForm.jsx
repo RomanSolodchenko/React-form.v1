@@ -1,41 +1,47 @@
 import React, {useState, useEffect} from 'react';
-import Validation from './validation';
-
+import validation from './validation';
 
 const Signupform = ({submitForm}) => {
 
-   const handleFormSubmit = (event) =>{
-       event.preventDefault(); // данная функция предотвращает перезагрузку страницы принажатии на кнопку сиг-ап, для отправки формы
-        setErrors(Validation(values));// проверка введенных данных 
-            setDataIsCorrect(true); // при нажатие на кнопку сиг-ап состояние переходит в тру
-   } 
 
-    const [values, setValues] = useState({ // отслеживание введеных значений и установка начальных
-        fullname:"",
-        email:"",
-        password:""
-        });
+  const [values, setValues] = useState({           // отслеживание введеных значений и установка начальных
+    fullname: "",
+    email: "",
+    password: "",
+    });
 
+// console.log(values);
 
-const handleChange = (event) =>{
+    const handleFormSubmit = (event) => {
+        event.preventDefault();                 // данная функция предотвращает перезагрузку страницы принажатии на кнопку сиг-ап, для отправки формы
+        setErrors(validation(values));            // проверка введенных данных 
+        setDataIsCorrect(true);   
+                                       // при нажатие на кнопку сиг-ап состояние переходит в тру
+    } 
+
+  
+
+const handleChange = (event) => {
 setValues({
     ...values,
-    [event.target.name]: event.target.value
+    [event.target.name]: event.target.value,
 });
-}// введеные данные пользователем и присвоение этих знчений
+};                                                           // введеные данные пользователем и присвоение этих знчений
 
-const [errors, setErrors] = useState({
 
-})
+const [errors, setErrors] = useState({});
 
-const [dataIsCorrect, setDataIsCorrect] = useState(false); //состояние изначальное 
+const [dataIsCorrect, setDataIsCorrect] = useState(false);      //состояние изначальное 
+
 
 useEffect(() => {
-if(Object.keys(errors).length === 0 && dataIsCorrect){
+if (Object.keys(errors).length === 0 && dataIsCorrect){
     submitForm(true);
-}
-},[errors])
+  }
+}, [errors]);
 
+
+console.log(errors);
 
   return (
     <div className="container">
@@ -49,11 +55,10 @@ if(Object.keys(errors).length === 0 && dataIsCorrect){
                     <label htmlFor="" className="label">Name</label>
                     <input type="text" 
                     className="input" 
-                    name='fullname' 
+                    name="fullname" 
                     value={values.fullname} 
                     onChange = {handleChange} // отслеживать значение
                     />
-
                     {errors.fullname && <p className="error">{errors.fullname}</p>}
                 </div>
 
@@ -61,7 +66,7 @@ if(Object.keys(errors).length === 0 && dataIsCorrect){
                     <label htmlFor="" className="label">Email</label>
                     <input type="email"
                      className="input"
-                      name='email'
+                      name="email"
                        value={values.email}
                        onChange = {handleChange}
                        />
@@ -72,7 +77,7 @@ if(Object.keys(errors).length === 0 && dataIsCorrect){
                     <label htmlFor="" className="label">Password</label>
                     <input type="password"
                      className="input"
-                      name='password'
+                      name = "password"
                        value={values.password}
                        onChange = {handleChange}
                        />
